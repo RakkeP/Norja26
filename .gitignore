@@ -1,5 +1,6 @@
-# Publish ONLY the detailed map. Ignore everything else so nothing
-# personal (GPX tracks, notes, accommodation, CLAUDE.md, settings) is ever committed.
+# Publish ONLY the detailed map + the option chooser. Ignore everything else so
+# nothing personal (GPX tracks, notes, accommodation, CLAUDE.md, settings) is ever committed.
 *
 !.gitignore
 !Norja26_KarttaDetailed.html
+!index.html

@@ -45,6 +45,12 @@
     .leaflet-control-layers span { color: #eee !important; }
     .leaflet-control-layers-separator { border-color: #0f3460 !important; margin: 6px 0 !important; }
     .leaflet-control-layers-toggle { background-color: #16213e !important; border: 1px solid #e94560 !important; border-radius: 4px !important; }
+    /* Route option toggle */
+    .opt-toggle { display:flex; box-shadow:0 1px 5px rgba(0,0,0,0.4); border-radius:6px; overflow:hidden; font-size:0.8rem; }
+    .opt-toggle a { padding:6px 12px; background:rgba(22,33,62,0.95); color:#ccc; text-decoration:none; font-weight:600; }
+    .opt-toggle a + a { border-left:1px solid #0f3460; }
+    .opt-toggle a.on { background:#e94560; color:#fff; }
+    .opt-toggle a:hover { color:#fff; }
 
     /* Scenic route labels */
     .sr-label { background: #2d1a06; color: #fff; border-radius: 4px; padding: 3px 7px; font-size: 0.62rem; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 7px rgba(0,0,0,0.7); line-height: 1.4; cursor: pointer; }
@@ -141,6 +147,27 @@ const days = [
   }
 ];
 
+// ── ROUTE OPTIONS ────────────────────────────────────────────────────────────
+// Option 1 = original (Ryfylke + Jæren, coastal return). Option 2 = skip the SW
+// loop, turn east at Røldal over Haukeli to Kongsberg, return inland (Sveg →
+// Lycksele). Days 1–4 are identical. Default view (no ?option) = Option 1.
+const OPTION = (new URLSearchParams(location.search).get('option') === '2') ? 2 : 1;
+
+if (OPTION === 2) {
+  // Day 5 — Eidfjord → Kongsberg (confirmed from GPX, 450 km)
+  days[4] = {
+    label: 'Päivä 5 — Eidfjord → Kongsberg', km: '~450 km', color: '#ef5350', tourist: ['Hardanger'],
+    coords: [[60.46625,7.06948],[60.47257,7.0439],[60.48164,7.00276],[60.47788,6.96327],[60.4715,6.91375],[60.46818,6.88082],[60.46965,6.84691],[60.46993,6.83865],[60.49591,6.80915],[60.53453,6.73427],[60.5245,6.7197],[60.51762,6.69741],[60.50519,6.68552],[60.49626,6.66117],[60.47692,6.64008],[60.46048,6.60539],[60.45544,6.56491],[60.45917,6.53612],[60.44828,6.50352],[60.43671,6.46838],[60.43253,6.4309],[60.43156,6.41281],[60.41743,6.40192],[60.41419,6.3744],[60.40506,6.35002],[60.39742,6.31569],[60.39369,6.28149],[60.401,6.25637],[60.41456,6.23285],[60.41347,6.22945],[60.40775,6.21554],[60.39561,6.20744],[60.39049,6.19743],[60.37929,6.19616],[60.36594,6.17493],[60.37374,6.14941],[60.36439,6.15105],[60.34883,6.17815],[60.34286,6.21168],[60.32806,6.20887],[60.32237,6.1806],[60.30943,6.15713],[60.30106,6.17007],[60.28724,6.24598],[60.30158,6.24603],[60.30564,6.27827],[60.31079,6.3023],[60.31966,6.32321],[60.33498,6.34406],[60.34066,6.37737],[60.34471,6.38107],[60.34636,6.39694],[60.35208,6.39996],[60.35412,6.3995],[60.35845,6.40375],[60.36441,6.40914],[60.36768,6.43031],[60.3736,6.45871],[60.38018,6.47921],[60.3866,6.50023],[60.3999,6.50645],[60.41176,6.52143],[60.42128,6.53758],[60.42891,6.55256],[60.43521,6.5694],[60.43042,6.59038],[60.4259,6.61118],[60.42007,6.63328],[60.40531,6.66874],[60.37644,6.64523],[60.34985,6.62593],[60.33199,6.60997],[60.31736,6.60954],[60.29452,6.60064],[60.27363,6.58721],[60.26086,6.57441],[60.23353,6.56575],[60.2158,6.56877],[60.19866,6.55929],[60.17678,6.54959],[60.15905,6.54833],[60.14392,6.54001],[60.12107,6.53323],[60.09282,6.5269],[60.07646,6.53243],[60.06695,6.54313],[60.05777,6.54813],[60.0472,6.56053],[60.02485,6.56031],[60.00724,6.55852],[59.98353,6.56581],[59.96713,6.57416],[59.94924,6.58302],[59.93397,6.5869],[59.92982,6.57688],[59.92539,6.58451],[59.91298,6.60857],[59.89036,6.64635],[59.87635,6.66749],[59.86571,6.68626],[59.85994,6.70175],[59.85895,6.70427],[59.85174,6.71691],[59.8437,6.72596],[59.83328,6.73322],[59.82839,6.74181],[59.82539,6.7427],[59.8223,6.74778],[59.81941,6.74612],[59.81451,6.75682],[59.81407,6.76824],[59.81488,6.77702],[59.82664,6.80128],[59.83687,6.82864],[59.83765,6.86159],[59.85261,6.86753],[59.85608,6.87355],[59.85667,6.8762],[59.85706,6.88823],[59.84925,6.9508],[59.83898,6.98952],[59.83402,7.02162],[59.84238,7.05642],[59.84909,7.07829],[59.83053,7.1731],[59.80162,7.23664],[59.79658,7.26025],[59.79316,7.2807],[59.78598,7.3086],[59.77488,7.3268],[59.76433,7.34877],[59.77046,7.37885],[59.76953,7.41667],[59.7559,7.44388],[59.74022,7.45274],[59.72804,7.48882],[59.73479,7.54953],[59.73521,7.55691],[59.73566,7.60829],[59.73223,7.64227],[59.7275,7.68069],[59.71815,7.73102],[59.71004,7.76128],[59.70224,7.80532],[59.67355,7.8102],[59.65065,7.80816],[59.62149,7.82075],[59.61787,7.85186],[59.61658,7.87458],[59.60238,7.89883],[59.58822,7.91356],[59.57909,7.93643],[59.57198,7.96081],[59.56998,7.98783],[59.57774,7.98954],[59.58107,8.00005],[59.57169,8.01625],[59.57463,8.03748],[59.57564,8.05561],[59.57999,8.08605],[59.58192,8.11619],[59.58462,8.13523],[59.58188,8.18051],[59.58639,8.19184],[59.60015,8.19168],[59.61101,8.19541],[59.61304,8.21933],[59.60828,8.25428],[59.62333,8.25416],[59.63674,8.2739],[59.64094,8.31134],[59.6429,8.34977],[59.64377,8.37766],[59.63573,8.39315],[59.62165,8.42353],[59.60921,8.42203],[59.60219,8.44499],[59.58966,8.46718],[59.57901,8.49448],[59.56835,8.52053],[59.57217,8.5537],[59.58106,8.56057],[59.58752,8.57801],[59.59478,8.62967],[59.60072,8.6529],[59.60034,8.69738],[59.60482,8.71882],[59.61011,8.75438],[59.61512,8.78951],[59.62089,8.81988],[59.6201,8.85115],[59.62079,8.89112],[59.61311,8.94912],[59.61086,8.98948],[59.61631,9.01899],[59.64046,9.00881],[59.6554,9.01657],[59.67582,9.01897],[59.69095,9.03967],[59.69362,9.08404],[59.69726,9.10678],[59.69837,9.12887],[59.69893,9.14414],[59.71016,9.15129],[59.72365,9.16635],[59.72996,9.19066],[59.73605,9.22828],[59.73015,9.25883],[59.72198,9.28159],[59.73424,9.30904],[59.72996,9.34763],[59.71953,9.37731],[59.70631,9.42303],[59.70678,9.45325],[59.7023,9.48198],[59.70455,9.56118],[59.70703,9.57776],[59.70423,9.6061],[59.69051,9.62876],[59.67661,9.63486],[59.66448,9.64366],[59.66404,9.64428]]
+  };
+  // Days 6–8 — PROVISIONAL straight-line placeholders (OSRM estimates; awaiting GPX)
+  days[5] = { label:'Päivä 6 — Kongsberg → Sveg', km:'~475 km (arvio)', color:'#ab47bc', tourist:[], provisional:true,
+    coords: [[59.66404,9.64428],[62.03598,14.35921]] };
+  days[6] = { label:'Päivä 7 — Sveg → Lycksele', km:'~493 km (arvio)', color:'#26c6da', tourist:[], provisional:true,
+    coords: [[62.03598,14.35921],[64.5975,18.6788]] };
+  days[7] = { label:'Päivä 8 — Lycksele → Oulu', km:'~521 km (arvio)', color:'#78909c', tourist:[], provisional:true,
+    coords: [[64.5975,18.6788],[65.04082,25.59458]] };
+}
+
 // ── MAIN MARKERS ─────────────────────────────────────────────────────────────
 const mainMarkers = [
   { lat:65.04082,lon:25.59458,popup:'<b>🏠 Oulu — lähtö ja paluu</b><br>Suomen viidenneksi suurin kaupunki, Perämeren rannalla.<br><i>Matka alkaa ja päättyy täällä.</i>',color:'#e94560'},
@@ -157,11 +184,14 @@ const mainMarkers = [
   { lat:60.51215,lon:7.86352, popup:'<b>💧 Vøringsfossen</b><br>182 m vapaa pudotus Måbødalenin rotkoon.<br>Näköalatasanne suoraan kuilun reunalla.<br><i>Pakollinen pysähdys.</i>',color:'#ffa726'},
   { lat:60.46636,lon:7.06925, popup:'<b>🌊 Eidfjord — yö 4</b><br>Pieni kylä Hardangerinvuonon pohjukassa.<br><i>Majoitus varattava ajoissa — pieni kylä.</i>',color:'#ffa726'},
   { lat:60.3459, lon:6.39521, popup:'<b>💧 Låtefoss</b><br>Kaksosvesiputous, joka virtaa suoraan tien yli.<br><i>Auto/pyörä ajaa kirjaimellisesti putousten alta.</i>',color:'#ef5350'},
-  { lat:58.90607,lon:6.07341, popup:'<b>⚓ Oanes — Lysefjordin portti</b><br>Ryfylken eteläinen pääte. Lauvvika–Oanes-lautta.<br>• Preikestolen (604 m) — 4–5 h<br>• Kjeragbolten — 7–8 h<br><i>Majoitus Stavangerissa (~35 km).</i>',color:'#ef5350'},
-  { lat:58.97008,lon:5.7316,  popup:'<b>🏙️ Stavanger — yö 5</b><br>Norjan neljänneksi suurin kaupunki.<br>Gamle Stavanger — 173 vanhaa puutaloa.<br><i>Seuraavana lähtö etelään Jærenille.</i>',color:'#ab47bc'},
-  { lat:58.39895,lon:6.03746, popup:'<b>🌊 Jæren — maisematie</b><br>Norjan ainoa todella tasainen rannikko.<br>Pitkät hiekkarannat, vanhat tilat, korkea taivas.<br><i>"Missä taivas on korkea."</i>',color:'#ab47bc'},
-  { lat:59.44378,lon:8.01102, popup:'<b>🚢 Dalen — yö 6</b><br>Telemarka-kanavan ylin piste. Sulkujärjestelmä +72 m.<br>Dalen Hotel (1894) — kansallinen muistomerkki.<br><i>Varattava ajoissa.</i>',color:'#ab47bc'},
-  { lat:62.03598,lon:14.35921,popup:'<b>🌲 Sveg — yö 7</b><br>Ruotsin Härjedalenin pääkaupunki.<br>Tunturien, jokien ja porojen maa.<br><i>Viimeinen yö ennen paluuta Ouluun.</i>',color:'#26c6da'},
+  { lat:58.90607,lon:6.07341, opt:1, popup:'<b>⚓ Oanes — Lysefjordin portti</b><br>Ryfylken eteläinen pääte. Lauvvika–Oanes-lautta.<br>• Preikestolen (604 m) — 4–5 h<br>• Kjeragbolten — 7–8 h<br><i>Majoitus Stavangerissa (~35 km).</i>',color:'#ef5350'},
+  { lat:58.97008,lon:5.7316,  opt:1, popup:'<b>🏙️ Stavanger — yö 5</b><br>Norjan neljänneksi suurin kaupunki.<br>Gamle Stavanger — 173 vanhaa puutaloa.<br><i>Seuraavana lähtö etelään Jærenille.</i>',color:'#ab47bc'},
+  { lat:58.39895,lon:6.03746, opt:1, popup:'<b>🌊 Jæren — maisematie</b><br>Norjan ainoa todella tasainen rannikko.<br>Pitkät hiekkarannat, vanhat tilat, korkea taivas.<br><i>"Missä taivas on korkea."</i>',color:'#ab47bc'},
+  { lat:59.44378,lon:8.01102, opt:1, popup:'<b>🚢 Dalen — yö 6</b><br>Telemarka-kanavan ylin piste. Sulkujärjestelmä +72 m.<br>Dalen Hotel (1894) — kansallinen muistomerkki.<br><i>Varattava ajoissa.</i>',color:'#ab47bc'},
+  { lat:62.03598,lon:14.35921,popup:'<b>🌲 Sveg — yö (Härjedalen)</b><br>Ruotsin Härjedalenin pääkaupunki.<br>Tunturien, jokien ja porojen maa.<br><i>Optio 1: yö 7 · Optio 2: yö 6.</i>',color:'#26c6da'},
+  // Option 2 overnight stops
+  { lat:59.66404,lon:9.64428, opt:2, popup:'<b>🏰 Kongsberg — yö 5 (Optio 2)</b><br>Historiallinen hopeakaivoskaupunki.<br>Saavutaan E134:ää Haukelin yli — käännös itään Røldalilta.<br><i>Korvaa Stavangerin; Ryfylke + Jæren jäävät pois.</i>',color:'#ef5350'},
+  { lat:64.5975, lon:18.6788, opt:2, popup:'<b>🌲 Lycksele — yö 7 (Optio 2)</b><br>Lapin portti, Inlandsvägenin (Reitti 45) varrella.<br><i>Paluu kotiin sisämaan kautta rannikon sijaan.</i>',color:'#26c6da'},
 ];
 
 // ── SCENIC ROUTE BOUNDARIES ──────────────────────────────────────────────────
@@ -192,12 +222,12 @@ const scenicRoutes = [
     end:   { lat:59.853, lon:6.776, place:'Røldal',    note:'Siirtymä Ryfylke-maisematielle.' }
   },
   {
-    name: 'Ryfylke', km: 260, elev: '0–972 m', day: 5, color: '#ef5350',
+    name: 'Ryfylke', km: 260, elev: '0–972 m', day: 5, color: '#ef5350', opt: 1,
     start: { lat:59.715, lon:6.561, place:'Håra (Røldal)',    note:'Norjan pisin maisematie alkaa. Nousu Saudafjelletille.' },
     end:   { lat:58.906, lon:6.073, place:'Oanes / Lauvvika', note:'Maisematien eteläinen pääte. Lysefjordin rannalla.' }
   },
   {
-    name: 'Jæren', km: 130, elev: '0–274 m', day: 6, color: '#ab47bc',
+    name: 'Jæren', km: 130, elev: '0–274 m', day: 6, color: '#ab47bc', opt: 1,
     start: { lat:58.923, lon:5.701, place:'Stavanger / Hafrsfjord', note:'Maisematien pohjoinen alku — ajo etelään rannikkoa pitkin.' },
     end:   { lat:58.459, lon:5.990, place:'Egersund',               note:'Maisematien eteläinen pääte.' }
   }
@@ -272,7 +302,7 @@ const layerAccommodation = L.layerGroup();
 
 // Draw day routes + legend
 days.forEach(day => {
-  const line = L.polyline(day.coords, { color: day.color, weight: 3.5, opacity: 0.85 }).addTo(layerRoutes);
+  const line = L.polyline(day.coords, { color: day.color, weight: 3.5, opacity: 0.85, dashArray: day.provisional ? '10,8' : null }).addTo(layerRoutes);
   line.bindTooltip(`<b>${day.label}</b><br>${day.km}${day.tourist.length ? '<br>🗺️ ' + day.tourist.join(', ') : ''}`, { sticky: true });
   const row = document.createElement('div');
   row.className = 'legend-row';
@@ -284,8 +314,8 @@ days.forEach(day => {
   document.getElementById('legend-body').appendChild(row);
 });
 
-// Draw main markers
-mainMarkers.forEach(m => {
+// Draw main markers (option-specific ones filtered by the active option)
+mainMarkers.filter(m => !m.opt || m.opt === OPTION).forEach(m => {
   const icon = L.divIcon({
     html: `<div style="width:10px;height:10px;border-radius:50%;background:${m.color};border:2px solid #fff;box-shadow:0 0 4px rgba(0,0,0,0.5)"></div>`,
     className: '', iconAnchor: [5,5]
@@ -334,7 +364,25 @@ function drawScenicRoute(r, layer) {
       .addTo(layer).bindPopup(popup);
   });
 }
-scenicRoutes.forEach(r => drawScenicRoute(r, layerScenic));
+scenicRoutes.filter(r => !r.opt || r.opt === OPTION).forEach(r => drawScenicRoute(r, layerScenic));
+
+// ── ROUTE OPTION UI (header text + toggle control) ───────────────────────────
+document.querySelector('#header p').textContent = OPTION === 2
+  ? '8 päivää · ~4 010 km · 5 maisematietä · Optio 2 (Kongsberg / sisämaa)'
+  : '8 päivää · ~4 450 km · 7 maisematietä · Optio 1 (Ryfylke + Jæren)';
+
+const OptionToggle = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd: function () {
+    const d = L.DomUtil.create('div', 'opt-toggle');
+    d.innerHTML =
+      `<a href="?option=1" class="${OPTION===1?'on':''}" title="Alkuperäinen: 7 maisematietä, ~4 450 km">Optio 1</a>` +
+      `<a href="?option=2" class="${OPTION===2?'on':''}" title="Kongsberg / sisämaan paluu: 5 maisematietä, ~4 010 km">Optio 2</a>`;
+    L.DomEvent.disableClickPropagation(d);
+    return d;
+  }
+});
+map.addControl(new OptionToggle());
 
 // Draw extra POIs — offset icon + dashed connector + exact-point dot
 function poiIcon(emoji, bg) {
