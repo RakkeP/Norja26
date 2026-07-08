@@ -60,6 +60,9 @@
 
     /* POI dots */
     .poi-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.6); font-size: 14px; cursor: pointer; }
+    /* Overnight-stop marker — gold ring so it stands apart from sights */
+    .poi-dot.stay  { width: 32px; height: 32px; border-color: #ffd54f; box-shadow: 0 0 0 2px #ffd54f, 0 2px 7px rgba(0,0,0,0.65); font-size: 16px; }
+    .poi-dot.sight { width: 30px; height: 30px; }
 
     /* Fuel stop labels */
     .fuel-label { background: #bf360c; color: #fff; border-radius: 4px; padding: 3px 7px; font-size: 0.63rem; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.65); cursor: pointer; border-left: 3px solid #ffcc00; }
@@ -181,7 +184,7 @@ const mainMarkers = [
   { lat:61.26566,lon:8.86905, popup:'<b>🏔️ Beitostølen — yö 3</b><br>Vuoristokylä 900 m korkeudessa. Valdresflyen eteläpää.<br><i>Pisin ja vaativin päivä päättyy tänne.</i>',color:'#66bb6a'},
   { lat:61.06559,lon:7.51779, popup:'<b>🌉 Borgund — sauvakirko</b><br>Rakennettu n. 1180, maailman parhaiten säilyneimpiä.<br><i>E16:n varrella — lyhyt pysähdys kannattaa.</i>',color:'#ffa726'},
   { lat:60.87377,lon:7.32094, popup:'<b>🏔️ Stegastein — Aurland</b><br>Konsolisilta 650 m Aurlandinvuonon yläpuolella.<br>Osa Aurlandsfjellet-maisematietä.<br><i>Yksi Norjan ikonisimmista maisemista.</i>',color:'#ffa726'},
-  { lat:60.51215,lon:7.86352, popup:'<b>💧 Vøringsfossen</b><br>182 m vapaa pudotus Måbødalenin rotkoon.<br>Näköalatasanne suoraan kuilun reunalla.<br><i>Pakollinen pysähdys.</i>',color:'#ffa726'},
+  { lat:60.42648,lon:7.25563, popup:'<b>💧 Vøringsfossen</b><br>182 m vapaa pudotus Måbødalenin rotkoon.<br>Näköalatasanne suoraan kuilun reunalla.<br><i>Pakollinen pysähdys.</i>',color:'#ffa726'},
   { lat:60.46636,lon:7.06925, popup:'<b>🌊 Eidfjord — yö 4</b><br>Pieni kylä Hardangerinvuonon pohjukassa.<br><i>Majoitus varattava ajoissa — pieni kylä.</i>',color:'#ffa726'},
   { lat:60.3459, lon:6.39521, popup:'<b>💧 Låtefoss</b><br>Kaksosvesiputous, joka virtaa suoraan tien yli.<br><i>Auto/pyörä ajaa kirjaimellisesti putousten alta.</i>',color:'#ef5350'},
   { lat:58.90607,lon:6.07341, opt:1, popup:'<b>⚓ Oanes — Lysefjordin portti</b><br>Ryfylken eteläinen pääte. Lauvvika–Oanes-lautta.<br>• Preikestolen (604 m) — 4–5 h<br>• Kjeragbolten — 7–8 h<br><i>Majoitus Stavangerissa (~35 km).</i>',color:'#ef5350'},
@@ -294,7 +297,8 @@ const extraPOIs = [
 
 // ── LAYER GROUPS ─────────────────────────────────────────────────────────────
 const layerRoutes        = L.layerGroup().addTo(map);
-const layerMarkers       = L.layerGroup().addTo(map);
+const layerStays         = L.layerGroup().addTo(map);
+const layerSights        = L.layerGroup().addTo(map);
 const layerScenic        = L.layerGroup().addTo(map);
 const layerPOI           = L.layerGroup().addTo(map);
 const layerFuel          = L.layerGroup().addTo(map);
@@ -314,13 +318,37 @@ days.forEach(day => {
   document.getElementById('legend-body').appendChild(row);
 });
 
-// Draw main markers (option-specific ones filtered by the active option)
-mainMarkers.filter(m => !m.opt || m.opt === OPTION).forEach(m => {
-  const icon = L.divIcon({
-    html: `<div style="width:10px;height:10px;border-radius:50%;background:${m.color};border:2px solid #fff;box-shadow:0 0 4px rgba(0,0,0,0.5)"></div>`,
-    className: '', iconAnchor: [5,5]
+// Draw main markers — split into overnight stops (yöpymispaikat) and sights (kohteet).
+// Same offset-icon + dashed-connector + exact-point-dot pattern as the POIs, but with a
+// thicker, higher-contrast connector so the markers are easy to spot.
+// Overnight titles use the pattern "— yö …"; Oulu (home) is the start/return base.
+// (Plain /yö/ would false-match words like "pyörä".)
+function markerKind(popup) {
+  return (/—\s*yö/.test(popup) || popup.includes('lähtö ja paluu')) ? 'stay' : 'sight';
+}
+function markerIcon(emoji, bg, kind) {
+  return L.divIcon({
+    html: `<div class="poi-dot ${kind}" style="background:${bg}">${emoji}</div>`,
+    className: '', iconAnchor: kind === 'stay' ? [16,16] : [15,15]
   });
-  L.marker([m.lat, m.lon], { icon }).addTo(layerMarkers).bindPopup(m.popup);
+}
+mainMarkers.filter(m => !m.opt || m.opt === OPTION).forEach(m => {
+  const kind  = markerKind(m.popup);
+  const emoji = (m.popup.match(/<b>\s*(\S+)/) || [])[1] || '📍';
+  const layer = kind === 'stay' ? layerStays : layerSights;
+  const iLat = m.lat + 0.05;
+  const iLon = m.lon + (kind === 'stay' ? -0.06 : 0.06);
+
+  L.polyline([[m.lat, m.lon], [iLat, iLon]], {
+    color: '#e94560', weight: 3, opacity: 0.9, dashArray: '3,6'
+  }).addTo(layer).bindPopup(m.popup);
+
+  L.circleMarker([m.lat, m.lon], {
+    radius: 4, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 1
+  }).addTo(layer).bindPopup(m.popup);
+
+  L.marker([iLat, iLon], { icon: markerIcon(emoji, m.color, kind), zIndexOffset: 400 })
+    .addTo(layer).bindPopup(m.popup);
 });
 
 // Draw scenic route start/end markers
@@ -353,7 +381,7 @@ function drawScenicRoute(r, layer) {
     const popup = srPopup(r, type);
 
     L.polyline([[loc.lat, loc.lon], [iLat, iLon]], {
-      color: '#ffcc00', weight: 1.5, opacity: 0.85, dashArray: '6,5'
+      color: '#e94560', weight: 3, opacity: 0.9, dashArray: '3,6'
     }).addTo(layer);
 
     L.circleMarker([loc.lat, loc.lon], {
@@ -397,7 +425,7 @@ function drawPOI(p, layer) {
   const iLon = p.exactLon + p.dLon;
 
   L.polyline([[p.exactLat, p.exactLon], [iLat, iLon]], {
-    color: '#ffcc00', weight: 1.5, opacity: 0.85, dashArray: '6,5'
+    color: '#e94560', weight: 3, opacity: 0.9, dashArray: '3,6'
   }).addTo(layer);
 
   L.circleMarker([p.exactLat, p.exactLon], {
@@ -557,7 +585,8 @@ accommodation.forEach(drawAccom);
 // Layer control
 L.control.layers(null, {
   '🛣️ Päiväreitit':                    layerRoutes,
-  '⛺ Yöpymispaikat &amp; kohteet':     layerMarkers,
+  '🛌 Yöpymispaikat':                   layerStays,
+  '📸 Kohteet &amp; nähtävyydet':       layerSights,
   '🗺️ Maisematiet — alku &amp; loppu': layerScenic,
   '📍 Lisäkäyntipaikat':                layerPOI,
   '⛽ Tankkauspaikat':                   layerFuel,
