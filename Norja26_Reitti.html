@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NORJA26 — Route Description</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e; color: #dfe3ea; line-height: 1.6; }
+    /* Header bar — click to go back to the chooser */
+    #bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 14px;
+      padding: 12px 18px; background: #16213e; border-bottom: 1px solid #0f3460; cursor: pointer; }
+    #bar h1 { font-size: 1.15rem; letter-spacing: 1px; color: #e94560; transition: color .15s; }
+    #bar h1 span { color: #fff; }
+    .back-arrow { display: inline-block; transition: transform .15s; }
+    #bar:hover h1 { color: #ff6b81; }
+    #bar:hover .back-arrow { transform: translateX(-3px); }
+    #bar a.map { margin-left: auto; text-decoration: none; font-weight: 700; font-size: .8rem;
+      background: #e94560; color: #fff; padding: 8px 14px; border-radius: 8px; white-space: nowrap; }
+    #bar a.map:hover { filter: brightness(1.12); }
+
+    main { max-width: 820px; margin: 0 auto; padding: 26px 18px 60px; }
+    .lead { color: #c7ccd6; font-size: .98rem; margin-bottom: 26px; }
+    .day { background: #16213e; border: 1px solid #0f3460; border-radius: 14px;
+      padding: 22px 22px 24px; margin-bottom: 20px; }
+    .day h2 { font-size: 1.2rem; color: #fff; margin-bottom: 12px; line-height: 1.35; }
+    .meta { font-size: .85rem; color: #c7ccd6; margin-bottom: 14px;
+      border-left: 3px solid #e94560; padding: 4px 0 4px 12px; }
+    .meta p { margin: 3px 0; }
+    .meta .k { color: #7fb2ff; font-weight: 700; }
+    .day p.prose { margin: 10px 0; color: #dfe3ea; font-size: .92rem; }
+    .day h3 { font-size: .82rem; text-transform: uppercase; letter-spacing: 1px; color: #ffb74d;
+      margin: 16px 0 8px; }
+    .day ul { list-style: none; }
+    .day li { position: relative; padding: 3px 0 3px 20px; font-size: .9rem; color: #cdd3dd; }
+    .day li::before { content: "›"; position: absolute; left: 5px; color: #e94560; font-weight: 700; }
+    strong { color: #fff; }
+
+    .summary { background: #16213e; border: 1px solid #0f3460; border-radius: 14px; padding: 22px; margin-top: 8px; }
+    .summary h2 { font-size: 1.2rem; color: #fff; margin-bottom: 14px; }
+    .tablewrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; min-width: 460px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #0f3460; }
+    th { color: #7fb2ff; text-transform: uppercase; font-size: .72rem; letter-spacing: .5px; }
+    tr.total td { font-weight: 700; color: #fff; border-top: 2px solid #e94560; border-bottom: none; }
+    td.km { white-space: nowrap; color: #ffd18a; }
+    .routes { margin-top: 16px; font-size: .85rem; color: #c7ccd6; }
+    .routes b { color: #fff; }
+    footer { text-align: center; color: #778; font-size: .72rem; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div id="bar" onclick="location.href='index.html'" title="← Back to route chooser">
+    <h1><span class="back-arrow">←</span> NORJA<span>26</span> — Route Description</h1>
+    <a class="map" href="Norja26_KarttaDetailed.html?option=1" onclick="event.stopPropagation()">Open map →</a>
+  </div>
+
+  <main>
+    <p class="lead">Motorcycle trip from Oulu, Finland through northern Sweden and across Norway's most
+      dramatic mountain and fjord country, returning via inland Sweden. The route covers 7 of Norway's
+      18 official Scenic Routes (Nasjonale Turistveger) and approximately 3&nbsp;500 km in 8 days.</p>
+
+    <section class="day">
+      <h2>Day 1 — Oulu to Hammerdal, Sweden</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Oulu → (E8/Rv4 coast road) → Kemi → Tornio → Luleå → <strong>Piteå</strong> (lunch at Frasses) → Swedish Route 45 (Inlandsvägen) south → Hammerdal Campsite</p>
+        <p><span class="k">Distance:</span> ~775 km</p>
+        <p><span class="k">Overnight:</span> Hammerdal campsite (by Route 45)</p>
+      </div>
+      <p class="prose">The day begins along the Gulf of Bothnia coast through the flat coastal plains of Ostrobothnia and Swedish Norrbotten. The crossing at Tornio–Haparanda is seamless within Schengen. Piteå serves as the midday fuel-and-food stop (Frasses burger joint, a Swedish institution). From Piteå the route turns inland onto the <strong>Inlandsvägen (Route 45)</strong> — Sweden's great north–south inland road through seemingly endless pine and birch forest, with occasional glimpses of Lake Ångermanälven and its tributaries. Traffic is sparse and rhythm is easy. The day ends at the small town of Hammerdal.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Gulf of Bothnia coastline and archipelago views</li>
+        <li>Torneälven river border crossing (Finland/Sweden)</li>
+        <li>Swedish Inlandsvägen — quiet and atmospheric</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 2 — Hammerdal to Dombås, Norway</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Hammerdal → Route 45 south → Ytterhogdal → Härjedalen west → Funäsdalen → <strong>Väuldalen border crossing</strong> → Norway → <strong>Røros</strong> → Rv30 south → Alvdal → Folldal → <strong>Dombås</strong> (Ljoshaug Camping)</p>
+        <p><span class="k">Distance:</span> ~540 km</p>
+        <p><span class="k">Overnight:</span> Ljoshaug Camping, Dombås</p>
+      </div>
+      <p class="prose">A long transit day that transitions from Swedish Härjedalen forest to Norwegian mountain landscape. The route heads south on Route 45 (Inlandsvägen) through Ytterhogdal, then turns west into the fell country of Härjedalen toward Funäsdalen. The border crossing is at Väuldalen — a quiet, unhurried crossing far from tourist traffic. Shortly after the border comes the day's highlight: <strong>Røros</strong>, a copper-mining town founded in 1644 and a UNESCO World Heritage Site. Its distinctive red timber buildings and mine structures make it a worthwhile stop. From Røros, Rv30 descends south through the Alvdal and Folldal valleys to Dombås, where the peaks of Dovrefjell begin to appear on the horizon.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Härjedalen fell country, Sweden</li>
+        <li>Border crossing at Väuldalen (Funäsdalen → Norway)</li>
+        <li><strong>Røros</strong> — UNESCO World Heritage copper-mining town</li>
+        <li>Dovrefjell silhouette approaching Dombås</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 3 — Dombås to Beitostølen via Trollstigen and Geiranger</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Dombås → E136 (Romsdalen) → Åndalsnes → <strong>Rv63 Trollstigen</strong> → Valldal → Eidsdal/Linge ferry → <strong>Eagle Road (Ørnesvingen)</strong> → <strong>Geiranger</strong> → Rv15 east → Grotli → Lom → <strong>Rv51 Valdresflye</strong> → Garli → Beitostølen</p>
+        <p><span class="k">Distance:</span> ~390 km</p>
+        <p><span class="k">Overnight:</span> Beitostølen</p>
+        <p><span class="k">Scenic Routes:</span> Geiranger–Trollstigen, Valdresflye</p>
+      </div>
+      <p class="prose">The longest and most spectacular riding day of the trip. Two of Norway's official Scenic Routes in a single day.</p>
+      <p class="prose">Leaving Dombås the road enters Romsdalen, one of Norway's great valley corridors — sheer granite walls rising 1&nbsp;000 m straight from the valley floor with the Rauma river below. After Åndalsnes the ascent to <strong>Trollstigen</strong> begins. The road climbs through 11 switchbacks with a gradient of up to 1:12, waterfalls crossing the road itself (Stigfossen and Tverrfossen). The visitor centre at the top looks directly down the hairpins — this is the classic photograph of Norway. Trollstigen is part of the <strong>Geiranger–Trollstigen Scenic Route</strong> (104 km, 0–1&nbsp;038 m elevation).</p>
+      <p class="prose">From Trollstigen the route descends south-west to Valldal and the short Eidsdal–Linge ferry (5 min), then descends the <strong>Eagle Road (Ørnesvingen)</strong> — 11 hairpins with the turquoise Geirangerfjord opening up below with every bend. <strong>Geiranger</strong> is a UNESCO World Heritage Site and Norway's most photographed fjord. The Seven Sisters waterfall across the fjord and the Suitor waterfall on the opposite wall are visible from the quay. An optional ascent to <strong>Dalsnibba viewpoint</strong> (1&nbsp;476 m) adds 30 km and a view directly down the fjord.</p>
+      <p class="prose">Leaving Geiranger east on Rv15 the road crosses the Strynfjell plateau to Grotli and continues to <strong>Lom</strong> — worth a short stop for the 12th-century Lom Stave Church. From Lom, Rv51 heads south onto the <strong>Valdresflye Scenic Route</strong> (49 km, 890–1&nbsp;389 m). This high-altitude traverse runs entirely above the treeline with wide-open views to the peaks of Jotunheimen National Park (including Galdhøpiggen, Norway's highest mountain at 2&nbsp;469 m). Mountain dairy farms along the route sell local cheese and sour cream. The road descends to Garli and the valley town of Beitostølen.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Romsdalen valley gorge on E136</li>
+        <li><strong>Trollstigen</strong> — Norway's most famous mountain road</li>
+        <li><strong>Geirangerfjord</strong> — UNESCO World Heritage (Seven Sisters waterfall, Eagle Road)</li>
+        <li>Lom Stave Church</li>
+        <li><strong>Valdresflye</strong> — above-treeline ride with Jotunheimen panorama</li>
+        <li>Optional: Dalsnibba viewpoint (1&nbsp;476 m)</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 4 — Beitostølen to Eidfjord via Aurlandsfjellet and Hardangervidda</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Beitostølen → E16 west → Fagernes → <strong>Borgund</strong> → Lærdal → <strong>Aurland</strong> → <strong>Aurlandsfjellet (Rv243)</strong> → Haugastøl → <strong>Hardangervidda (Rv7)</strong> → <strong>Vøringsfossen</strong> detour → Måbødalen → <strong>Eidfjord</strong></p>
+        <p><span class="k">Distance:</span> ~365 km</p>
+        <p><span class="k">Overnight:</span> Eidfjord</p>
+        <p><span class="k">Scenic Routes:</span> Aurlandsfjellet, Hardangervidda</p>
+      </div>
+      <p class="prose">Two scenic routes back to back on a day that moves from fjord-bottom to high plateau to fjord again.</p>
+      <p class="prose">From Beitostølen the route heads west on E16 through Valdres, passing <strong>Borgund Stave Church</strong> — one of Norway's best-preserved medieval stave churches, dating from around 1180. At Lærdal the road enters the Aurland valley, descending to the fjordside village of <strong>Aurland</strong> on the Sognefjord. Here the <strong>Aurlandsfjellet Scenic Route</strong> (47 km, 0–1&nbsp;308 m) begins — the "snow road between the fjords." The road climbs in tight hairpins from sea level to the bare mountain plateau, and at the top the <strong>Stegastein viewpoint</strong> extends a cantilevered platform 650 m directly above the Aurlandsfjord below. Even in June snow patches line the roadside near the summit. The plateau crossing to Haugastøl is stark and cinematic.</p>
+      <p class="prose">At Haugastøl the <strong>Hardangervidda Scenic Route</strong> (67 km, 0–1&nbsp;250 m) begins — Europe's largest high-altitude plateau, a vast ancient landscape of bare rock, glacial lakes, and wild reindeer herds. The <strong>Vøringsfossen</strong> viewpoint is a mandatory stop: Norway's most famous waterfall drops 182 m in free fall into the Måbødalen gorge, with a viewing platform cantilevered over the abyss. The descent through <strong>Måbødalen</strong> is steep and spectacular — the road corkscrewing down through a gorge with rare alpine flora on the walls. Eidfjord receives the route at sea level on the Hardangerfjord.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li><strong>Borgund Stave Church</strong> (c. 1180) — one of Norway's finest medieval wooden buildings</li>
+        <li><strong>Aurland</strong> and Sognefjord</li>
+        <li><strong>Aurlandsfjellet</strong> — "the snow road," hairpins from fjord to plateau</li>
+        <li><strong>Stegastein viewpoint</strong> — cantilevered platform 650 m above the fjord</li>
+        <li><strong>Hardangervidda plateau</strong> — wild reindeer, expansive views</li>
+        <li><strong>Vøringsfossen</strong> waterfall (182 m free fall)</li>
+        <li><strong>Måbødalen gorge</strong> descent to Hardangerfjord</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 5 — Eidfjord to Oanes via Hardanger and Ryfylke</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Eidfjord → Rv13 south → Kinsarvik → Lofthus → <strong>Hardanger Scenic Route</strong> → Odda → <strong>Låtefoss</strong> → Røldal → Håra → <strong>Ryfylke Scenic Route</strong> (Rv13/520/46) → Saudafjellet → Sand → Nesvik–Hjelmeland ferry → Rv46/523 → Lauvvika–Oanes ferry → <strong>Oanes</strong></p>
+        <p><span class="k">Distance:</span> ~400 km</p>
+        <p><span class="k">Overnight:</span> Stavanger area (short drive or ferry from Oanes)</p>
+        <p><span class="k">Scenic Routes:</span> Hardanger, Ryfylke</p>
+      </div>
+      <p class="prose">The richest scenic day of the trip — two complete Scenic Routes with two ferry crossings.</p>
+      <p class="prose">From Eidfjord the road south follows the <strong>Hardanger Scenic Route</strong> (158 km total). The section from Kinsarvik south passes through Lofthus, famous for its fruit orchards spilling down to the fjord (apple and cherry blossoms in spring; fruit-heavy in summer). Near Odda, the dramatic <strong>Låtefoss</strong> waterfall pours twin cascades directly over the road — a genuinely unusual sight. The road through Odda continues to Røldal, which marks the transition to Ryfylke.</p>
+      <p class="prose">At Håra the <strong>Ryfylke Scenic Route</strong> begins (260 km, 0–972 m). This is the longest of Norway's 18 tourist roads and one of the most varied. It climbs through the raw <strong>Saudafjellet</strong> mountain, drops to the fjord village of <strong>Sand</strong> on Sandsfjorden (the Høse Bridge detour is worth it), and continues through green Ryfylke valley scenery. Two short, atmospheric ferry crossings are part of the route: <strong>Nesvik–Hjelmeland</strong> and <strong>Lauvvika–Oanes</strong>. The day ends at Oanes on <strong>Lysefjord</strong> — the fjord that holds both Preikestolen and Kjeragbolten.</p>
+      <p class="prose">From Oanes it is a short drive around the fjord to Stavanger for the night.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Hardanger fruit orchards at Lofthus</li>
+        <li><strong>Låtefoss</strong> double waterfall crossing the road</li>
+        <li><strong>Ryfylke</strong> — fjords, mountains, and highland roads</li>
+        <li><strong>Allmannajuvet</strong> zinc mine installation art site</li>
+        <li>Ferry crossings: Nesvik–Hjelmeland and Lauvvika–Oanes</li>
+        <li>Oanes: gateway to Lysefjord (Preikestolen, Kjeragbolten)</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 6 — Stavanger to Dalen via Jæren Coast</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Stavanger → Rv44 south → <strong>Jæren Scenic Route</strong> (coastal road) → Egersund → Rv44/E39 northeast → Flekkefjord area → Kvinesdal → Rv9 north → Setesdal/Kvinesdale highlands → Rv45 → <strong>Dalen</strong> (Telemark)</p>
+        <p><span class="k">Distance:</span> ~375 km</p>
+        <p><span class="k">Overnight:</span> Dalen</p>
+        <p><span class="k">Scenic Route:</span> Jæren</p>
+      </div>
+      <p class="prose">Departure from Stavanger heads south along the <strong>Jæren Scenic Route</strong> (130 km, 0–274 m) — Norway's only truly flat coastal landscape. Where all other tourist roads climb to mountains, Jæren stretches wide and open to the North Sea with long sandy beaches, low stone walls, ancient farms, and a sky that dominates the scene. The route passes through Sola, Orre, Ogna, and Obrestad lighthouse before reaching Egersund.</p>
+      <p class="prose">From Egersund the route turns inland and northeast through the rugged interior of Agder county. The terrain rises through the Sirdal and Kvinesdale highlands — quieter roads through forest and heath. The destination is <strong>Dalen</strong> in Telemark, the scenic terminus of the Telemark Canal (built 1892–1900), a system of locks that lifts boats 72 m from the Skienfjord to the mountain lake Bandak. The Dalen Hotel, a fairytale wooden building from 1894, dominates the small village.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li><strong>Jæren</strong> — flat coastal scenery, beaches, old farms, "where the sky is high"</li>
+        <li>Obrestad lighthouse</li>
+        <li>Setesdal highland roads</li>
+        <li><strong>Dalen</strong> and the Telemark Canal terminus</li>
+        <li>Dalen Hotel (1894, national heritage building)</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 7 — Dalen to Sveg, Sweden</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Dalen → Rv36 east → Notodden → Rv37/E134 northeast → Kongsberg → Rv7 north → Numedal → Rv60 east → Flå → E16 east → Rv2 → Kongsvinger → Sweden (E16 at Magnor) → Rv25 → Trysil area → Rv26 north → <strong>Sveg, Sweden</strong></p>
+        <p><span class="k">Distance:</span> ~615 km</p>
+        <p><span class="k">Overnight:</span> Sveg, Härjedalen</p>
+      </div>
+      <p class="prose">A long eastward transit day that gradually peels away from Norway. The route climbs through the Numedal valley, one of Norway's lesser-visited inland valleys with a string of medieval stave churches. Kongsberg — historic silver-mining city — is worth a brief stop. The crossing into Sweden at Magnor is unremarkable but the landscape softens quickly into Swedish spruce forest. Trysil (Scandinavia's largest ski resort) passes in summer quiet. The day ends in Sveg, the small capital of Swedish Härjedalen, a region of fells, rivers, and reindeer.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Numedal valley and stave church country</li>
+        <li>Kongsberg historic silver mine town</li>
+        <li>Trysil valley, Sweden</li>
+        <li>Sveg and Härjedalen fell country</li>
+      </ul>
+    </section>
+
+    <section class="day">
+      <h2>Day 8 — Sveg to Oulu</h2>
+      <div class="meta">
+        <p><span class="k">Route:</span> Sveg → E45 north (Inlandsvägen) → Östersund → E14 east → Sundsvall → E4 north → Härnösand → Kramfors → Umeå → E4 continues north → Luleå → Tornio → <strong>Oulu</strong></p>
+        <p><span class="k">Distance:</span> ~1&nbsp;000 km</p>
+        <p><span class="k">Overnight:</span> Home</p>
+      </div>
+      <p class="prose">The final long day retraces part of the outward route in reverse. North on the E45 past Östersund returns to the Inlandsvägen spirit, then the E4 coastal highway carries the last stretch up the Gulf of Bothnia shore through Sundsvall, Härnösand, and Umeå. The Finnish border at Tornio–Haparanda closes the loop. Oulu by early evening.</p>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Östersund and Lake Storsjön</li>
+        <li>Gulf of Bothnia coastal highway</li>
+        <li>Torneälven border river — trip complete</li>
+      </ul>
+    </section>
+
+    <section class="summary">
+      <h2>Trip Summary</h2>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Day</th><th>Route</th><th>Distance</th><th>Scenic Routes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Oulu → Hammerdal</td><td class="km">~775 km</td><td>—</td></tr>
+            <tr><td>2</td><td>Hammerdal → Dombås</td><td class="km">~540 km</td><td>—</td></tr>
+            <tr><td>3</td><td>Dombås → Beitostølen</td><td class="km">~390 km</td><td>Geiranger–Trollstigen, Valdresflye</td></tr>
+            <tr><td>4</td><td>Beitostølen → Eidfjord</td><td class="km">~365 km</td><td>Aurlandsfjellet, Hardangervidda</td></tr>
+            <tr><td>5</td><td>Eidfjord → Oanes/Stavanger</td><td class="km">~400 km</td><td>Hardanger, Ryfylke</td></tr>
+            <tr><td>6</td><td>Stavanger → Dalen</td><td class="km">~375 km</td><td>Jæren</td></tr>
+            <tr><td>7</td><td>Dalen → Sveg</td><td class="km">~615 km</td><td>—</td></tr>
+            <tr><td>8</td><td>Sveg → Oulu</td><td class="km">~1&nbsp;000 km</td><td>—</td></tr>
+            <tr class="total"><td>Total</td><td></td><td class="km">~4&nbsp;450 km</td><td>7 Scenic Routes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="routes"><b>Scenic Routes covered:</b> Geiranger–Trollstigen · Valdresflye · Aurlandsfjellet · Hardangervidda · Hardanger · Ryfylke · Jæren</p>
+    </section>
+
+    <footer>NORJA26 · Oulu → Norway → Oulu · July 2026</footer>
+  </main>
+</body>
+</html>
